@@ -10,10 +10,13 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  IonIcon,
+  IonRouterOutlet,
 } from "@ionic/react";
 import { Route, Redirect } from "react-router-dom";
 import { useEffect, useState } from "react";
 import React from "react";
+import Tab3 from './Tab3';
 import "./Tab1.css";
 
 const Tab1: React.FC = () => {
@@ -75,6 +78,17 @@ const Tab1: React.FC = () => {
             <p>{modalData.description}</p>
             <p>{modalData.name}</p>
             <p>{modalData.price}</p>
+            <IonHeader>
+              <IonButton
+                size="small"
+                onClick={() => setShowModal(false)}
+                color="secondary">
+                <p>X</p>
+              </IonButton>
+            </IonHeader>
+            <IonButton routerLink="/Tab3" onClick={() => setShowModal(false)} color="success">
+              Add to cart
+            </IonButton>
           </IonModal>
         </IonCard>
       );
@@ -91,8 +105,21 @@ const Tab1: React.FC = () => {
             <IonLabel>{subscriptions[i].shoppingItem.description}</IonLabel>
           </IonItem>
           <IonModal isOpen={showModal2}>
+            <IonIcon></IonIcon>
             <p>{modalData.description}</p>
             <p>{modalData.name}</p>
+            <p>{modalData.price}</p>
+            <IonHeader>
+              <IonButton
+                size="small"
+                onClick={() => setShowModal2(false)}
+                color="secondary">
+                <p>X</p>
+              </IonButton>
+            </IonHeader>
+            <IonButton routerLink="/Tab3" onClick={() => setShowModal2(false)} color="success">
+            Add to cart
+            </IonButton>
           </IonModal>
         </IonCard>
       );
@@ -110,6 +137,13 @@ const Tab1: React.FC = () => {
       <IonContent fullscreen>
         {individualCards ? individualCards : null}
         {teamCards ? teamCards : null}
+        
+        <IonRouterOutlet>
+          <Route path="/tab3">
+            <Tab3 />
+          </Route>
+        </IonRouterOutlet>
+        
 
         <IonHeader collapse="condense">
           <IonToolbar>
